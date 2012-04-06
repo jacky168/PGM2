@@ -39,7 +39,7 @@ genotypeFactor = struct('var', [], 'card', [], 'val', []);
 % 2 alleles.)
 
 [allelesToGenotypes, genotypesToAlleles] = generateAlleleGenotypeMappers(numAlleles);
-
+%genotypesToAlleles
 % One or both of these matrices might be useful.
 %
 %   1.  allelesToGenotypes: n x n matrix that maps pairs of allele IDs to 
@@ -57,9 +57,25 @@ genotypeFactor = struct('var', [], 'card', [], 'val', []);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
 % Fill in genotypeFactor.var.  This should be a 1-D row vector.
+genotypeFactor.var = [genotypeVarChild, genotypeVarParentOne, genotypeVarParentTwo];
 % Fill in genotypeFactor.card.  This should be a 1-D row vector.
-
+numGenotype = numAlleles * (numAlleles + 1) /2;
+genotypeFactor.card = [numGenotype,numGenotype,numGenotype];
 genotypeFactor.val = zeros(1, prod(genotypeFactor.card));
 % Replace the zeros in genotypeFactor.val with the correct values.
-
+A = IndexToAssignment([1:length(genotypeFactor.val)], genotypeFactor.card);
+prnt1geno = genotypesToAlleles(A(:,2),:);
+prnt2geno = genotypesToAlleles(A(:,3),:);  % parents' genos.
+childgeno = genotypesToAlleles(A(:,1),:);
+for i=1:length(genotypeFactor.val),
+	for m = 1:2,
+		for n=1:2,
+			T = sort([prnt1geno(i,m) prnt2geno(i,n)]);
+			if(isequal(T, childgeno(i,:)))
+				genotypeFactor.val(i) = genotypeFactor.val(i) + 0.25;
+			end
+		end
+	end
+end
+%V = (T == sort(childgeno))
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
