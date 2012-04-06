@@ -10,21 +10,21 @@
 isDominant = 1;
 genotypeVar = 1;
 phenotypeVar = 3;
-phenotypeFactor = struct('var', [3,1], 'card', [2,3], 'val', [1,0,1,0,0,1]); % Comment out this line for testing
-% phenotypeFactor = phenotypeGivenGenotypeMendelianFactor(isDominant, genotypeVar, phenotypeVar);
-
+%phenotypeFactor = struct('var', [3,1], 'card', [2,3], 'val', [1,0,1,0,0,1]); % Comment out this line for testing
+%phenotypeFactor = phenotypeGivenGenotypeMendelianFactor(isDominant, genotypeVar, phenotypeVar);
 % Testing phenotypeGivenGenotypeFactor:
-alphaList = [0.8; 0.6; 0.1];
+alphaList = [0.8; 0.6; 0.1; 0.2];
 genotypeVar = 1;
 phenotypeVar = 3;
-phenotypeFactorAlpha = struct('var', [3,1], 'card', [2,3], 'val', [0.8,0.2,0.6,0.4,0.1,0.9]); % Comment out this line for testing
-% phenotypeFactorAlpha = phenotypeGivenGenotypeFactor(alphaList, genotypeVar, phenotypeVar);
+%phenotypeFactorAlpha = struct('var', [3,1], 'card', [2,3], 'val', [0.8,0.2,0.6,0.4,0.1,0.9]); % Comment out this line for testing
+phenotypeFactorAlpha = phenotypeGivenGenotypeFactor(alphaList, genotypeVar, phenotypeVar)
 
 % Testing genotypeGivenAlleleFreqsFactor:
 alleleFreqs = [0.1; 0.9];
 genotypeVar = 1;
 genotypeFactor = struct('var', [1], 'card', [3], 'val', [0.01,0.18,0.81]); % Comment out this line for testing
 % genotypeFactor = genotypeGivenAlleleFreqsFactor(alleleFreqs, genotypeVar);
+return;
 
 % Testing genotypeGivenParentsGenotypesFactor:
 numAlleles = 2;

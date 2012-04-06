@@ -39,9 +39,16 @@ phenotypeFactor = struct('var', [], 'card', [], 'val', []);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
 % Fill in phenotypeFactor.var.  This should be a 1-D row vector.
+phenotypeFactor.var = [phenotypeVar, genotypeVar];
 % Fill in phenotypeFactor.card.  This should be a 1-D row vector.
-
+phenotypeFactor.card = [2, 3];
 phenotypeFactor.val = zeros(1, prod(phenotypeFactor.card));
 % Replace the zeros in phentoypeFactor.val with the correct values.
-
+A = IndexToAssignment([1:prod(phenotypeFactor.card)], phenotypeFactor.card)	
+if isDominant == 1,
+	V = [1,0,1,0,0,1];
+else
+	V = [1,0,0,1,0,1];
+end
+phenotypeFactor = SetValueOfAssignment(phenotypeFactor, A, V);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
