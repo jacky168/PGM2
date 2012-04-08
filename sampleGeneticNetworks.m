@@ -50,17 +50,17 @@ genotypeVarMotherCopy = 1;
 genotypeVarFatherCopy = 2;
 phenotypeVar = 3;
 %phenotypeFactorPar = struct('var', [3,1,2], 'card', [2,3,3], 'val', [0.8,0.2,0.6,0.4,0.1,0.9,0.6,0.4,0.5,0.5,0.05,0.95,0.1,0.9,0.05,0.95,0.01,0.99]); % Comment out this line for testing
-phenotypeFactorPar = phenotypeGivenCopiesFactor(alphaListThree, numAllelesThree, genotypeVarMotherCopy, genotypeVarFatherCopy, phenotypeVar);
-return;
+%phenotypeFactorPar = phenotypeGivenCopiesFactor(alphaListThree, numAllelesThree, genotypeVarMotherCopy, genotypeVarFatherCopy, phenotypeVar);
 
 % Testing constructDecoupledGeneticNetwork:
-pedigree = struct('parents', [0,0;1,3;0,0]);
+pedigree = struct('parents', [0,0;1,3;0,0])
 pedigree.names = {'Ira','James','Robin'};
 alleleFreqsThree = [0.1; 0.7; 0.2];
 alleleListThree = {'F', 'f', 'n'};
 alphaListThree = [0.8; 0.6; 0.1; 0.5; 0.05; 0.01];
-sampleFactorListDecoupled = load('sampleFactorListDecoupled.mat'); % Comment out this line for testing
-% sampleFactorListDecoupled = constructDecoupledGeneticNetwork(pedigree, alleleFreqsThree, alphaListThree);
+%sampleFactorListDecoupled = load('sampleFactorListDecoupled.mat'); % Comment out this line for testing
+sampleFactorListDecoupled = constructDecoupledGeneticNetwork(pedigree, alleleFreqsThree, alphaListThree);
+return;
 
 % Testing constructSigmoidPhenotypeFactor:
 alleleWeights = {[3, -3], [0.9, -0.8]};

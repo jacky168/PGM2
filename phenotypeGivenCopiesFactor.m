@@ -59,9 +59,15 @@ phenotypeFactor = struct('var', [], 'card', [], 'val', []);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
 % Fill in phenotypeFactor.var.  This should be a 1-D row vector.
+phenotypeFactor.var = [phenotypeVar, geneCopyVarOne, geneCopyVarTwo];
 % Fill in phenotypeFactor.card.  This should be a 1-D row vector.
+phenotypeFactor.card = [2, numAlleles, numAlleles];
 
 phenotypeFactor.val = zeros(1, prod(phenotypeFactor.card));
 % Replace the zeros in phentoypeFactor.val with the correct values.
-
+A = IndexToAssignment([1:length(phenotypeFactor.val)], phenotypeFactor.card);
+for i=1:length(phenotypeFactor.val),
+	gt = allelesToGenotypes(A(i,2),A(i,3));
+	phenotypeFactor.val(i) = alphaList(gt) * (2 - A(i,1)) + (1-alphaList(gt)) * (A(i,1) - 1);
+end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
