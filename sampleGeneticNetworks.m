@@ -58,20 +58,20 @@ pedigree.names = {'Ira','James','Robin'};
 alleleFreqsThree = [0.1; 0.7; 0.2];
 alleleListThree = {'F', 'f', 'n'};
 alphaListThree = [0.8; 0.6; 0.1; 0.5; 0.05; 0.01];
-sampleFactorListDecoupled1 = load('sampleFactorListDecoupled.mat'); % Comment out this line for testing
-sampleFactorListDecoupled = constructDecoupledGeneticNetwork(pedigree, alleleFreqsThree, alphaListThree);
-for(i=7:length(sampleFactorListDecoupled1.sampleFactorListDecoupled)),
-"--------------AAAAAAAAAAAAAAAAAA--------------------------"
-	sampleFactorListDecoupled1.sampleFactorListDecoupled(i)
-"--------------BBBBBBBBBBBBBBBBBB--------------------------"
-	sampleFactorListDecoupled(i)
-end
-return;
+%sampleFactorListDecoupled1 = load('sampleFactorListDecoupled.mat'); % Comment out this line for testing
+%sampleFactorListDecoupled = constructDecoupledGeneticNetwork(pedigree, alleleFreqsThree, alphaListThree);
+%for(i=7:length(sampleFactorListDecoupled1.sampleFactorListDecoupled)),
+%"--------------AAAAAAAAAAAAAAAAAA--------------------------"
+%	sampleFactorListDecoupled1.sampleFactorListDecoupled(i)
+%"--------------BBBBBBBBBBBBBBBBBB--------------------------"
+%	sampleFactorListDecoupled(i)
+%end
 
 % Testing constructSigmoidPhenotypeFactor:
 alleleWeights = {[3, -3], [0.9, -0.8]};
 geneCopyVarParentOneList = [1; 2];
 geneCopyVarParentTwoList = [4; 5];
 phenotypeVar = 3;
-phenotypeFactorSigmoid = struct('var', [3,1,2,4,5], 'card', [2,2,2,2,2], 'val', [0.999590432835014,0.000409567164986080,0.858148935099512,0.141851064900488,0.997762151478724,0.00223784852127629,0.524979187478940,0.475020812521060,0.858148935099512,0.141851064900488,0.0147740316932731,0.985225968306727,0.524979187478940,0.475020812521060,0.00273196076301106,0.997268039236989,0.997762151478724,0.00223784852127629,0.524979187478940,0.475020812521060,0.987871565015726,0.0121284349842742,0.167981614866076,0.832018385133925,0.524979187478940,0.475020812521060,0.00273196076301106,0.997268039236989,0.167981614866076,0.832018385133925,0.000500201107079564,0.999499798892920]);  % Comment out this line for testing
-% phenotypeFactorSigmoid = constructSigmoidPhenotypeFactor(alleleWeights, geneCopyVarParentOneList, geneCopyVarParentTwoList, phenotypeVar);
+%phenotypeFactorSigmoid = struct('var', [3,1,2,4,5], 'card', [2,2,2,2,2], 'val', [0.999590432835014,0.000409567164986080,0.858148935099512,0.141851064900488,0.997762151478724,0.00223784852127629,0.524979187478940,0.475020812521060,0.858148935099512,0.141851064900488,0.0147740316932731,0.985225968306727,0.524979187478940,0.475020812521060,0.00273196076301106,0.997268039236989,0.997762151478724,0.00223784852127629,0.524979187478940,0.475020812521060,0.987871565015726,0.0121284349842742,0.167981614866076,0.832018385133925,0.524979187478940,0.475020812521060,0.00273196076301106,0.997268039236989,0.167981614866076,0.832018385133925,0.000500201107079564,0.999499798892920]);  % Comment out this line for testing
+phenotypeFactorSigmoid = constructSigmoidPhenotypeFactor(alleleWeights, geneCopyVarParentOneList, geneCopyVarParentTwoList, phenotypeVar);
+phenotypeFactorSigmoid.val .* 100
